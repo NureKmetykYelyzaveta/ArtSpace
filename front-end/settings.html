@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Налаштування — ArtSpace</title>
+
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+<header class="header profile-header">
+        <div class="logo" data-i18n="logo">ArtSpace</div>
+
+        <nav class="profile-nav">
+            <a href="index.html" class="profile-nav-link active" data-i18n="profile_home">Головна</a>
+            <a href="chats.html" class="profile-nav-link" data-i18n="profile_chats">Чати</a>
+            <a href="saved.html" class="profile-nav-link" data-i18n="profile_saved">Збережені</a>
+            <a href="settings.html" class="profile-nav-link" data-i18n="profile_settings">Налаштування</a>
+        </nav>
+
+        <div class="nav">
+            <button class="upload-btn" data-i18n="upload">Upload</button>
+
+            <a href="profile.html" class="profile">
+    <img src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Профіль" class="header-avatar">
+</a>
+        </div>
+    </header>
+
+<div class="settings-page">
+
+    <aside class="settings-sidebar">
+        <h2 data-i18n="settings_title">Налаштування</h2>
+
+        <ul>
+            <li class="active" data-i18n="settings_profile_tab">Профіль</li>
+            <li data-i18n="settings_account_tab">Акаунт</li>
+            <li data-i18n="settings_security_tab">Безпека</li>
+        </ul>
+    </aside>
+
+    <main class="settings-content">
+
+        <div class="settings-card">
+            <h3 data-i18n="settings_profile_title">Профіль</h3>
+
+            <div class="settings-item">
+                <span data-i18n="name">Ім’я</span>
+                <span id="settingsName"></span>
+            </div>
+
+            <div class="settings-item">
+                <span data-i18n="nick">Нік</span>
+                <span id="settingsNick"></span>
+            </div>
+
+            <div class="settings-item">
+                <span data-i18n="bio">Біо</span>
+                <span id="settingsBio"></span>
+            </div>
+        </div>
+
+        <div class="settings-card danger">
+            <h3 data-i18n="settings_account_title">Акаунт</h3>
+
+            <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+                Вийти з акаунта
+            </button>
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

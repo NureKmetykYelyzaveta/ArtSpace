@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук | ArtSpace</title>
+
+    <script src="js/api.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo" data-i18n="logo">ArtSpace</div>
+
+        <div class="search">
+    <i data-lucide="search"></i>
+    <input type="text" id="searchInput" placeholder="">
+</div>
+
+        <div class="nav">
+            <button class="upload-btn" data-i18n="upload">Upload</button>
+            <a href="profile.html" class="profile">
+    <img src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Профіль" class="header-avatar">
+</a>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <section class="profile-posts-section">
+            <div class="profile-section-header">
+                <h2 data-i18n="search_results">Результати пошуку</h2>
+            </div>
+
+            <div id="searchResults" class="search-results"></div>
+        </section>
+    </main>
+
+    
+    <script src="js/i18n.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

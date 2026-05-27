@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        ArtSpace
+    </a>
+
+    <div class="lang-dropdown" id="langDropdown">
+
+        <button class="lang-btn" id="langBtn" type="button">
+            <span id="currentLang">UK</span>
+
+            <svg class="lang-arrow" viewBox="0 0 24 24">
+                <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                />
+            </svg>
+        </button>
+
+        <div class="lang-menu" id="langMenu">
+
+            <div class="lang-option" data-lang="uk">
+                🇺🇦 Українська
+            </div>
+
+            <div class="lang-option" data-lang="en">
+                🇬🇧 English
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<div class="admin-page">
+
+    <h1
+        class="admin-title"
+        data-i18n="admin_panel_title">
+        Панель модератора
+    </h1>
+
+    <div class="admin-tabs">
+
+        <button
+            class="admin-tab active"
+            type="button"
+            data-tab="reports"
+            data-i18n="admin_reports_tab">
+            Скарги
+        </button>
+
+        <button
+            class="admin-tab"
+            type="button"
+            data-tab="challenges"
+            data-i18n="admin_challenges_tab">
+            Челенджі
+        </button>
+
+    </div>
+
+    <section
+        class="admin-section active"
+        id="reportsSection">
+
+        <h2
+            class="admin-section-title"
+            data-i18n="moderation_title">
+            Модерація скарг
+        </h2>
+
+        <div
+            id="reportsContainer"
+            class="reports-grid">
+        </div>
+
+    </section>
+
+    <section
+        class="admin-section"
+        id="challengesSection">
+
+        <h2
+            class="admin-section-title"
+            data-i18n="challenge_admin_title">
+            Керування челенджем
+        </h2>
+
+        <div class="challenge-admin-layout">
+
+            <div class="challenge-admin-card">
+
+                <h3 data-i18n="active_challenge_settings">
+                    Налаштування активного челенджу
+                </h3>
+
+                <form id="challengeForm">
+
+                    <label class="admin-label">
+                        <span data-i18n="challenge_title_label">
+                            Тема челенджу
+                        </span>
+
+                        <input
+                            type="text"
+                            id="challengeTitleInput"
+                            class="admin-input"
+                            placeholder="Наприклад: Dark Fantasy Character"
+                        >
+                    </label>
+
+                    <label class="admin-label">
+                        <span data-i18n="challenge_description_label">
+                            Опис челенджу
+                        </span>
+
+                        <textarea
+                            id="challengeDescriptionInput"
+                            class="admin-textarea"
+                            placeholder="Наприклад: Create dark fantasy art"
+                        ></textarea>
+                    </label>
+
+                    <div class="challenge-admin-actions">
+
+                        <button
+                            type="submit"
+                            class="approve-btn"
+                            data-i18n="save_challenge">
+                            Зберегти челендж
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reject-btn"
+                            onclick="finishActiveChallenge()"
+                            data-i18n="finish_challenge">
+                            Завершити челендж
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="challenge-admin-card">
+
+                <h3 data-i18n="current_active_challenge">
+                    Поточний активний челендж
+                </h3>
+
+                <div
+                    id="activeChallengePreview"
+                    class="active-challenge-preview">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

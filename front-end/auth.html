@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtSpace — Авторизація</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-background">
+            <span class="glow glow-1"></span>
+            <span class="glow glow-2"></span>
+            <span class="glow glow-3"></span>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <div class="auth-layout">
+            <section class="auth-showcase">
+                <div class="auth-brand" data-i18n="logo">ArtSpace</div>
+
+                <h1 class="showcase-title" data-i18n="auth_hero_title">
+                    Поринь у світ<br>цифрового мистецтва
+                </h1>
+
+                <p class="showcase-text" data-i18n="auth_hero_subtitle">
+                    Публікуй ілюстрації, збирай фідбек, знаходь однодумців
+                    і створюй власний творчий простір.
+                </p>
+
+                <div class="floating-cards">
+                    <div class="floating-card card-a">
+                        <img src="https://i.pinimg.com/736x/94/4e/78/944e7814f93e0b63f28124d517244300.jpg" alt="Art preview">
+                    </div>
+                    <div class="floating-card card-b">
+                        <img src="https://i.pinimg.com/736x/d6/87/bd/d687bd8f326e3fb5fdabf5e4b26cdba0.jpg" alt="Art preview">
+                    </div>
+                    <div class="floating-card card-c">
+                        <img src="https://i.pinimg.com/736x/0e/68/7b/0e687bf7536a859f050fda705929b5be.jpg" alt="Art preview">
+                    </div>
+                </div>
+
+                <div class="lang-dropdown auth-language-switcher" id="langDropdown">
+    <button class="lang-btn" id="langBtn" type="button">
+        <span id="currentLang">UK</span>
+        <svg class="lang-arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+    </button>
+
+    <div class="lang-menu" id="langMenu">
+        <div class="lang-option" data-lang="uk">🇺🇦 Українська</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+    </div>
+</div>
+            </section>
+
+            <section class="auth-panel">
+                <div class="auth-card" id="authCard">
+                    <div class="auth-card-top">
+                        <h2 id="formTitle">Вхід</h2>
+                        <p id="formSubtitle">Увійди, щоб продовжити роботу в ArtSpace</p>
+                    </div>
+
+                    <form id="authForm" class="auth-form">
+                        <div class="field-group register-only">
+                            <label for="nameInput" data-i18n="auth_name_label">Ім’я</label>
+                            <input
+                                type="text"
+                                id="nameInput"
+                                maxlength="40"
+                                data-i18n-placeholder="auth_name_placeholder"
+                                placeholder="Твоє ім’я"
+                            >
+                        </div>
+
+                        <div class="field-group">
+                            <label for="emailInput" data-i18n="auth_email_label">Email</label>
+                            <input
+                                type="email"
+                                id="emailInput"
+                                maxlength="80"
+                                data-i18n-placeholder="auth_email_placeholder"
+                                placeholder="name@example.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="field-group">
+                            <label for="passwordInput" data-i18n="auth_password_label">Пароль</label>
+                            <input
+                                type="password"
+                                id="passwordInput"
+                                minlength="6"
+                                maxlength="60"
+                                data-i18n-placeholder="auth_password_placeholder"
+                                placeholder="••••••••"
+                                required
+                            >
+                        </div>
+
+                        <div class="field-group register-only">
+                            <label for="confirmPasswordInput" data-i18n="auth_confirm_password_label">Підтвердження пароля</label>
+                            <input
+                                type="password"
+                                id="confirmPasswordInput"
+                                minlength="6"
+                                maxlength="60"
+                                data-i18n-placeholder="auth_confirm_password_placeholder"
+                                placeholder="••••••••"
+                            >
+                        </div>
+
+                        <div class="auth-message" id="authMessage"></div>
+
+                        <button type="submit" class="auth-submit-btn" id="submitBtn">Увійти</button>
+                    </form>
+
+                    <div class="auth-switch-row">
+                        <span id="switchText">Ще не маєш акаунта?</span>
+                        <button type="button" class="switch-mode-btn" id="switchModeBtn">Зареєструватися</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

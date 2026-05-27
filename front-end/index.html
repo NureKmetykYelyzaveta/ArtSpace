@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtSpace</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo" data-i18n="logo">ArtSpace</div>
+
+    <div class="search">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" placeholder="">
+    </div>
+
+    <div class="nav">
+
+        <button class="upload-btn" data-i18n="upload">
+            Upload
+        </button>
+
+        <div class="lang-dropdown" id="langDropdown">
+
+            <button class="lang-btn" id="langBtn" type="button">
+                <span id="currentLang">UK</span>
+
+                <svg class="lang-arrow" viewBox="0 0 24 24">
+                    <path
+                        d="M6 9l6 6 6-6"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                    />
+                </svg>
+            </button>
+
+            <div class="lang-menu" id="langMenu">
+
+                <div class="lang-option" data-lang="uk">
+                    🇺🇦 Українська
+                </div>
+
+                <div class="lang-option" data-lang="en">
+                    🇬🇧 English
+                </div>
+
+            </div>
+
+        </div>
+
+        <a href="admin.html"
+           class="profile-nav-link admin-link">
+            Admin
+        </a>
+
+        <a href="profile.html" class="profile">
+            <img
+                src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg"
+                alt="Профіль"
+                class="header-avatar"
+            >
+        </a>
+
+    </div>
+</header>
+
+    <main class="main">
+
+        <aside class="sidebar">
+            <h3>
+                <i data-lucide="layout-grid"></i>
+                <span data-i18n="sidebar_categories">Категорії</span>
+            </h3>
+
+            <ul class="categories">
+                <li class="active">
+                    <i data-lucide="flame"></i>
+                    <span data-i18n="category_all">Всі</span>
+                </li>
+                <li>
+                    <i data-lucide="palette"></i>
+                    <span data-i18n="category_digital_art">Digital Art</span>
+                </li>
+                <li>
+                    <i data-lucide="sparkles"></i>
+                    <span data-i18n="category_fantasy">Fantasy</span>
+                </li>
+                <li>
+                    <i data-lucide="cpu"></i>
+                    <span data-i18n="category_cyberpunk">Cyberpunk</span>
+                </li>
+                <li>
+                    <i data-lucide="leaf"></i>
+                    <span data-i18n="category_nature">Nature</span>
+                </li>
+                <li>
+                    <i data-lucide="gamepad-2"></i>
+                    <span data-i18n="category_game_art">Game Art</span>
+                </li>
+                <li>
+                    <i data-lucide="user"></i>
+                    <span data-i18n="category_characters">Characters</span>
+                </li>
+                <li>
+                    <i data-lucide="pen-tool"></i>
+                    <span data-i18n="category_concept_art">Concept Art</span>
+                </li>
+                <li>
+                    <i data-lucide="orbit"></i>
+                    <span data-i18n="category_sci_fi">Sci-Fi</span>
+                </li>
+                <li>
+                    <i data-lucide="brush"></i>
+                    <span data-i18n="category_sketches">Sketches</span>
+                </li>
+                <li>
+                    <i data-lucide="image"></i>
+                    <span data-i18n="category_illustrations">Illustrations</span>
+                </li>
+                <li>
+                    <i data-lucide="book-open"></i>
+                    <span data-i18n="category_comics">Comics</span>
+                </li>
+            </ul>
+
+            <h3>
+                <i data-lucide="hash"></i>
+                <span data-i18n="sidebar_popular_tags">Популярні теги</span>
+            </h3>
+
+            <div class="tags">
+                <span>#anime</span>
+                <span>#fantasy</span>
+                <span>#character</span>
+                <span>#dark</span>
+                <span>#illustration</span>
+                <span>#concept</span>
+                <span>#portrait</span>
+                <span>#artwork</span>
+            </div>
+        </aside>
+
+        <section class="gallery-container">
+            <div class="gallery" id="gallery"></div>
+        </section>
+
+        <aside class="rightbar">
+            <div class="rightbar-block">
+                <h3>
+                    <i data-lucide="users"></i>
+                    <span data-i18n="popular_communities">Популярні спільноти</span>
+                </h3>
+
+                <div class="community-list">
+                    <div class="community-item">
+                        <div class="community-info">
+                            <img src="https://i.pravatar.cc/48?img=21" alt="Digital Artists">
+                            <div>
+                                <div class="community-name">Digital Artists</div>
+                                <div class="community-members" data-i18n="community_members_1">12 430 учасників</div>
+                            </div>
+                        </div>
+                        <button class="join-btn" data-i18n="join">Join</button>
+                    </div>
+
+                    <div class="community-item">
+                        <div class="community-info">
+                            <img src="https://i.pravatar.cc/48?img=32" alt="Fantasy World">
+                            <div>
+                                <div class="community-name">Fantasy World</div>
+                                <div class="community-members" data-i18n="community_members_2">8 920 учасників</div>
+                            </div>
+                        </div>
+                        <button class="join-btn" data-i18n="join">Join</button>
+                    </div>
+
+                    <div class="community-item">
+                        <div class="community-info">
+                            <img src="https://i.pravatar.cc/48?img=45" alt="Cyberpunk Art">
+                            <div>
+                                <div class="community-name">Cyberpunk Art</div>
+                                <div class="community-members" data-i18n="community_members_3">10 105 учасників</div>
+                            </div>
+                        </div>
+                        <button class="join-btn" data-i18n="join">Join</button>
+                    </div>
+
+                    <div class="community-item">
+                        <div class="community-info">
+                            <img src="https://i.pravatar.cc/48?img=56" alt="Nature Lovers">
+                            <div>
+                                <div class="community-name">Nature Lovers</div>
+                                <div class="community-members" data-i18n="community_members_4">6 740 учасників</div>
+                            </div>
+                        </div>
+                        <button class="join-btn" data-i18n="join">Join</button>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="rightbar-block">
+
+                        <h3>
+                            <i data-lucide="target"></i>
+
+                            <span data-i18n="challenge_of_day">
+                                Challenge дня
+                            </span>
+                        </h3>
+
+                        <div
+                            class="challenge-card"
+                            id="challengeCard">
+
+                            <div class="challenge-loading">
+                                Loading...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+        </aside>
+
+    </main>
+
+    
+    <div class="modal-overlay" id="commentsModal">
+        <div class="comments-modal">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <i data-lucide="message-circle"></i>
+                    <h2 class="modal-title" data-i18n="comments_title">Коментарі</h2>
+                </div>
+
+                <button class="modal-close" id="closeCommentsModal" type="button" aria-label="Закрити">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="modal-post-info" id="modalPostInfo"></div>
+
+            <div class="modal-comments-list" id="modalCommentsList"></div>
+
+            <form class="modal-comment-form" id="commentForm">
+                <input
+                    type="text"
+                    id="commentInput"
+                    data-i18n-placeholder="comment_placeholder"
+                    placeholder="Напиши коментар..."
+                    maxlength="180"
+                    autocomplete="off"
+                >
+                <button type="submit" class="comment-submit-btn" data-i18n="send">Надіслати</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay image-modal-overlay" id="imageModal">
+        <div class="image-modal-box">
+            <button class="image-modal-close" id="closeImageModal" type="button" aria-label="Закрити">
+                <i data-lucide="x"></i>
+            </button>
+
+            <img id="imageModalContent" class="image-modal-content" src="" alt="Post image">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="uploadPostModal">
+        <div class="upload-post-modal">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <h2 class="modal-title" data-i18n="new_post">Нова публікація</h2>
+                </div>
+
+                <button class="modal-close" id="closeUploadPostModal" type="button" aria-label="Закрити">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <form id="uploadPostForm" class="upload-post-form">
+                <div class="upload-post-preview-wrap">
+                    <img
+                        id="uploadPostPreview"
+                        class="upload-post-preview"
+                        src="https://placehold.co/500x700/181818/aaaaaa?text=Preview"
+                        alt="Preview"
+                    >
+                </div>
+
+                <div class="upload-post-fields">
+                    <label class="edit-profile-label">
+                        <span data-i18n="image">Зображення</span>
+                        <label class="custom-file-upload">
+                            <span data-i18n="choose_file">Обрати файл</span>
+                            <input type="file" id="uploadPostImageInput" accept="image/*" required>
+                        </label>
+                    </label>
+
+                    <label class="edit-profile-label">
+                        <span data-i18n="title">Назва</span>
+                        <input type="text" id="uploadPostTitleInput" class="edit-profile-input" maxlength="60" required>
+                    </label>
+
+                    <label class="edit-profile-label">
+                        <span data-i18n="category">Категорія</span>
+                        <select id="uploadPostCategoryInput" class="edit-profile-input" required>
+                            <option value="" data-i18n="choose_category">Оберіть категорію</option>
+                            <option value="Digital Art">Digital Art</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Cyberpunk">Cyberpunk</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Game Art">Game Art</option>
+                            <option value="Characters">Characters</option>
+                            <option value="Concept Art">Concept Art</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Sketches">Sketches</option>
+                            <option value="Illustrations">Illustrations</option>
+                            <option value="Comics">Comics</option>
+                        </select>
+                    </label>
+
+                    <label class="edit-profile-label">
+                        <span data-i18n="tags">Теги</span>
+                        <input
+                            type="text"
+                            id="uploadPostTagsInput"
+                            class="edit-profile-input"
+                            maxlength="120"
+                            data-i18n-placeholder="tags_placeholder"
+                            placeholder="Наприклад: fantasy, moon, portrait"
+                        >
+                    </label>
+                </div>
+
+                <div class="edit-profile-actions">
+                    <button type="button" class="secondary-btn" id="cancelUploadPost" data-i18n="cancel">Скасувати</button>
+                    <button type="submit" class="save-profile-btn" data-i18n="publish">Опублікувати</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

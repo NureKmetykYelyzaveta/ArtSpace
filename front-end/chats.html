@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чати | ArtSpace</title>
+
+    <script src="js/api.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chats.css">
+</head>
+<body>
+    <header class="header profile-header">
+        <div class="logo" data-i18n="logo">ArtSpace</div>
+
+        <nav class="profile-nav">
+            <a href="index.html" class="profile-nav-link" data-i18n="profile_home">Головна</a>
+            <a href="chats.html" class="profile-nav-link active" data-i18n="profile_chats">Чати</a>
+            <a href="saved.html" class="profile-nav-link" data-i18n="profile_saved">Збережені</a>
+            <a href="settings.html" class="profile-nav-link" data-i18n="profile_settings">Налаштування</a>
+        </nav>
+
+        <div class="nav">
+            <button class="upload-btn" data-i18n="upload">Upload</button>
+
+            <a href="profile.html" class="profile">
+                <img src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Профіль" class="header-avatar">
+            </a>
+        </div>
+    </header>
+
+    <main class="chats-page">
+        <aside class="chats-sidebar">
+            <div class="chats-sidebar-header">
+                <h2 data-i18n="chats_title">Чати</h2>
+            </div>
+            <div id="chatsList" class="chats-list"></div>
+        </aside>
+
+        <section class="chat-panel">
+            <div id="chatHeader" class="chat-header">
+                <p data-i18n="chat_select">Оберіть чат</p>
+            </div>
+            <div id="typingIndicator" class="typing-indicator" style="display:none;" data-i18n="typing">
+    друкує...
+</div>
+
+            <div id="messagesList" class="messages-list"></div>
+
+            <form id="messageForm" class="message-form">
+                <input type="text" id="messageInput" data-i18n-placeholder="message_placeholder" placeholder="Напиши повідомлення..." maxlength="500" autocomplete="off">
+                <button type="submit" data-i18n="send">Надіслати</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/chats.js"></script>
+</body>
+</html>

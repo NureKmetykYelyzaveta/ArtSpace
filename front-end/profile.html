@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    
+    <script src="js/auth-store.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профіль | ArtSpace</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header profile-header">
+        <div class="logo" data-i18n="logo">ArtSpace</div>
+
+        <nav class="profile-nav">
+            <a href="index.html" class="profile-nav-link active" data-i18n="profile_home">Головна</a>
+            <a href="chats.html" class="profile-nav-link" data-i18n="profile_chats">Чати</a>
+            <a href="saved.html" class="profile-nav-link" data-i18n="profile_saved">Збережені</a>
+            <a href="settings.html" class="profile-nav-link" data-i18n="profile_settings">Налаштування</a>
+        </nav>
+
+        <div class="nav">
+            <button class="upload-btn" data-i18n="upload">Upload</button>
+
+            <a href="profile.html" class="profile">
+    <img src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Профіль" class="header-avatar">
+</a>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <section class="profile-hero">
+            <div class="profile-avatar-wrap">
+    <img id="profileAvatar" src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Аватар" class="profile-avatar-large">
+</div>
+
+            <div class="profile-main-info">
+               <div class="profile-top-row">
+                <h1 id="profileName">Yelyzaveta</h1>
+
+                <div class="profile-actions">
+                    <button class="edit-profile-btn" id="openEditProfileModal" data-i18n="edit_profile">Редагувати профіль</button>
+                    <button id="followBtn" class="follow-btn" data-i18n="follow">Підписатися</button>
+                    <button id="messageBtn" class="follow-btn message-btn" style="display:none;" data-i18n="message">
+                        Написати
+                    </button>
+                </div>
+            </div>
+
+                <p id="profileNick" class="profile-nick">@yelyzaveta_art</p>
+                <p id="profileBio" class="profile-bio">
+                    Цифровий художник. Люблю fantasy, character design та атмосферні ілюстрації.
+                </p>
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <span id="postsCount">0</span>
+                        <p data-i18n="profile_posts_count">публікацій</p>
+                    </div>
+                    <div class="profile-stat">
+                        <span id="likesCount">0</span>
+                        <p data-i18n="profile_likes_count">вподобань</p>
+                    </div>
+                    <div class="profile-stat">
+                        <span id="followersCount">0</span>
+                        <p data-i18n="profile_followers_count">читачів</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-posts-section">
+    <div class="profile-section-header">
+        <h2 data-i18n="profile_posts">Публікації</h2>
+    </div>
+
+    <div class="gallery" id="profileGallery"></div>
+</section>
+    </main>
+
+    <div class="modal-overlay" id="commentsModal">
+    <div class="comments-modal">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <i data-lucide="message-circle"></i>
+                <h2 class="modal-title" data-i18n="comments_title">Коментарі</h2>
+            </div>
+
+            <button class="modal-close" id="closeCommentsModal" type="button" aria-label="Закрити">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <div class="modal-post-info" id="modalPostInfo"></div>
+
+        <div class="modal-comments-list" id="modalCommentsList"></div>
+
+        <form class="modal-comment-form" id="commentForm">
+            <input
+            type="text"
+            id="commentInput"
+            data-i18n-placeholder="comment_placeholder"
+            placeholder="Напиши коментар..."
+                maxlength="180"
+                autocomplete="off"
+            >
+            <button type="submit" class="comment-submit-btn" data-i18n="send">Надіслати</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay image-modal-overlay" id="imageModal">
+    <div class="image-modal-box">
+        <button class="image-modal-close" id="closeImageModal" type="button" aria-label="Закрити">
+            <i data-lucide="x"></i>
+        </button>
+
+        <img id="imageModalContent" class="image-modal-content" src="" alt="Post image">
+    </div>
+</div>
+
+<div class="modal-overlay" id="editProfileModal">
+    <div class="edit-profile-modal">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <h2 class="modal-title" data-i18n="edit_profile_title">Редагувати профіль</h2>
+            </div>
+
+            <button class="modal-close" id="closeEditProfileModal" type="button" aria-label="Закрити">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <form id="editProfileForm" class="edit-profile-form">
+            <div class="edit-profile-avatar-block">
+    <img id="editAvatarPreview" src="https://grizly.club/uploads/posts/2023-08/1691270675_grizly-club-p-kartinki-avatarki-bez-fona-55.jpg" alt="Avatar preview" class="edit-avatar-preview">
+
+    <div class="edit-avatar-buttons">
+        <label class="custom-file-upload">
+            <span data-i18n="choose_avatar">Обрати аватар</span>
+            <input type="file" id="editAvatarInput" accept="image/*">
+        </label>
+
+        <button type="button" class="secondary-btn danger-btn" id="removeAvatarBtn">
+            <span data-i18n="remove_avatar">Видалити аватар</span>
+        </button>
+    </div>
+</div>
+
+            <div class="edit-profile-fields">
+                <label class="edit-profile-label">
+                    <span data-i18n="name">Ім’я</span>
+                    <input type="text" id="editNameInput" class="edit-profile-input" maxlength="40">
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="nick">Нік</span>
+                    <input type="text" id="editNickInput" class="edit-profile-input" maxlength="40">
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="bio">Біо</span>
+                    <textarea id="editBioInput" class="edit-profile-textarea" maxlength="180"></textarea>
+                </label>
+            </div>
+
+            <div class="edit-profile-actions">
+                <button type="button" class="secondary-btn" id="cancelEditProfile" data-i18n="cancel">Скасувати</button>
+                <button type="submit" class="save-profile-btn" data-i18n="save_changes">Зберегти</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="editPostModal">
+    <div class="edit-post-modal">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <h2 class="modal-title" data-i18n="edit_post_title">Редагувати публікацію</h2>
+            </div>
+
+            <button class="modal-close" id="closeEditPostModal" type="button" aria-label="Закрити">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <form id="editPostForm" class="edit-post-form">
+            <div class="edit-post-preview-wrap">
+                <img id="editPostPreview" src="" alt="Post preview" class="edit-post-preview">
+            </div>
+
+            <div class="edit-post-fields">
+                <label class="edit-profile-label">
+                    <span data-i18n="title">Назва</span>
+                    <input type="text" id="editPostTitleInput" class="edit-profile-input" maxlength="60">
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="category">Категорія</span>
+                    <input type="text" id="editPostCategoryInput" class="edit-profile-input" maxlength="40" placeholder="Наприклад: Fantasy">
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="tags">Теги</span>
+                    <input type="text" id="editPostCategoryInput" class="edit-profile-input" maxlength="40" data-i18n-placeholder="choose_category" placeholder="Наприклад: Fantasy">
+                </label>
+            </div>
+
+            <div class="edit-profile-actions">
+                <button type="button" class="secondary-btn" id="cancelEditPost" data-i18n="cancel">Скасувати</button>
+                <button type="submit" class="save-profile-btn" data-i18n="save_changes">Зберегти</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="uploadPostModal">
+    <div class="upload-post-modal">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <h2 class="modal-title" data-i18n="new_post">Нова публікація</h2>
+            </div>
+
+            <button class="modal-close" id="closeUploadPostModal" type="button" aria-label="Закрити">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <form id="uploadPostForm" class="upload-post-form">
+            <div class="upload-post-preview-wrap">
+                <img
+                    id="uploadPostPreview"
+                    class="upload-post-preview"
+                    src="https://placehold.co/500x700/181818/aaaaaa?text=Preview"
+                    alt="Preview"
+                >
+            </div>
+
+            <div class="upload-post-fields">
+                <label class="edit-profile-label">
+                    <span data-i18n="image">Зображення</span>
+                    <label class="custom-file-upload">
+                        <span data-i18n="choose_file">Обрати файл</span>
+                        <input type="file" id="uploadPostImageInput" accept="image/*" required>
+                    </label>
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="title">Назва</span>
+                    <input type="text" id="uploadPostTitleInput" class="edit-profile-input" maxlength="60" required>
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="category">Категорія</span>
+                    <select id="uploadPostCategoryInput" class="edit-profile-input" required>
+                        <option value="" data-i18n="choose_category">Оберіть категорію</option>
+                        <option value="Digital Art">Digital Art</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Cyberpunk">Cyberpunk</option>
+                        <option value="Nature">Nature</option>
+                        <option value="Game Art">Game Art</option>
+                        <option value="Characters">Characters</option>
+                        <option value="Concept Art">Concept Art</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Sketches">Sketches</option>
+                        <option value="Illustrations">Illustrations</option>
+                        <option value="Comics">Comics</option>
+                    </select>
+                </label>
+
+                <label class="edit-profile-label">
+                    <span data-i18n="tags">Теги</span>
+                    <input
+                    type="text"
+                    id="uploadPostTagsInput"
+                    class="edit-profile-input"
+                    maxlength="120"
+                    data-i18n-placeholder="tags_placeholder"
+                    placeholder="Наприклад: fantasy, moon, portrait"
+                    >
+                </label>
+            </div>
+
+            <div class="edit-profile-actions">
+                <button type="button" class="secondary-btn" id="cancelUploadPost" data-i18n="cancel">Скасувати</button>
+                <button type="submit" class="save-profile-btn" data-i18n="publish">Опублікувати</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/i18n.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
