@@ -1,7 +1,6 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "https://artspace-l9l8.onrender.com/api";
 
 async function apiRequest(path, options = {}) {
-
     const response = await fetch(
         `${API_BASE_URL}${path}`,
         {
@@ -9,7 +8,6 @@ async function apiRequest(path, options = {}) {
                 "Content-Type": "application/json",
                 ...(options.headers || {})
             },
-
             ...options
         }
     );
@@ -17,16 +15,12 @@ async function apiRequest(path, options = {}) {
     let data = null;
 
     try {
-
         data = await response.json();
-
     } catch {
-
         data = null;
     }
 
     if (!response.ok) {
-
         throw new Error(
             data?.detail ||
             data?.message ||
@@ -38,14 +32,10 @@ async function apiRequest(path, options = {}) {
 }
 
 async function getActiveChallenge() {
-
-    return apiRequest(
-        "/challenges/active"
-    );
+    return apiRequest("/challenges/active");
 }
 
 async function joinChallenge(challengeId, userId) {
-
     if (!challengeId) {
         throw new Error("Не знайдено ID челенджу");
     }
@@ -58,7 +48,6 @@ async function joinChallenge(challengeId, userId) {
         `/challenges/${challengeId}/join`,
         {
             method: "POST",
-
             body: JSON.stringify({
                 userId
             })
@@ -67,7 +56,6 @@ async function joinChallenge(challengeId, userId) {
 }
 
 async function getChallengePosts(challengeId) {
-
     if (!challengeId) {
         throw new Error("Не знайдено ID челенджу");
     }
