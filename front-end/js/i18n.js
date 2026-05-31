@@ -490,6 +490,10 @@ function initLanguageSwitcher() {
     });
 }
 
+function getLangLabel(lang) {
+    return lang === "uk" ? "UA" : "GB";
+}
+
 function initCustomLanguageDropdown() {
     const dropdown = document.getElementById("langDropdown");
     const btn = document.getElementById("langBtn");
@@ -497,7 +501,7 @@ function initCustomLanguageDropdown() {
 
     if (!dropdown || !btn || !currentLangText) return;
 
-    currentLangText.textContent = getCurrentLanguage().toUpperCase();
+    currentLangText.textContent = getLangLabel(getCurrentLanguage());
 
     btn.onclick = (e) => {
         e.stopPropagation();
@@ -516,6 +520,8 @@ function initCustomLanguageDropdown() {
 
             setCurrentLanguage(lang);
             applyTranslations();
+
+            currentLangText.textContent = getLangLabel(lang);
 
             document.dispatchEvent(new CustomEvent("languageChanged", {
                 detail: { lang }
